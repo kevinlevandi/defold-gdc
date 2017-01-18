@@ -1,9 +1,0 @@
-images {
-  image: "/main/tiles/images/tile-green.png"
-}
-images {
-  image: "/main/tiles/images/tile-cyan.png"
-}
-margin: 0
-extrude_borders: 0
-inner_padding: 0

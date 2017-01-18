@@ -1,0 +1,10 @@
+image: "/images/tiles_spritesheet.png"
+tile_width: 68
+tile_height: 68
+tile_margin: 0
+tile_spacing: 4
+collision: ""
+material_tag: "tile"
+collision_groups: "default"
+extrude_borders: 2
+inner_padding: 0
