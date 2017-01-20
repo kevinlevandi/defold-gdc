@@ -1,4 +1,41 @@
+CommonEnemy 	= require("modules.enemy.commonenemy")
+BouncerEnemy	= require("modules.enemy.bouncerenemy")
+Util			= require("modules.misc.util")
+
+-- IMMUTABLES --
+
+local difficulties = { "easy", "medium" }
+local enemyTypes = { CommonEnemy, BouncerEnemy }
+local enemyTypesByDifficulty = {
+	easy = { CommonEnemy },
+	medium = { CommonEnemy, BouncerEnemy }
+}
+local nEnemiesByDifficulty = {
+	easy = 10,
+	medium = 20
+}
+
+-- LOCAL FUNCTIONS --
+
+local function spawnEnemies(currentDifficulty)
+	local ret = {}
+	local availableEnemyTypes = enemyTypesByDifficulty[currentDifficulty]
+	local i = 1
+	while i <= nEnemiesByDifficulty[currentDifficulty] do
+		local rndIdx = Util.getRandomInteger(#availableEnemyTypes)
+		table.insert(ret, availableEnemyTypes[rndIdx])
+		i=i+1
+	end
+	return ret
+end
+
+-- GLOBAL FUNCTIONS --
 
 function init(self)
-    
+    self.currentDifficulty = difficulties[2]
+	
+	local enemies = spawnEnemies(self.currentDifficulty)
+	for k, v in ipairs(enemies) do
+		v.move()
+	end
 end
