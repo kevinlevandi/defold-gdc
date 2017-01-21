@@ -493,7 +493,7 @@ convex_hulls {
 convex_hulls {
   index: 639
   count: 8
-  collision_group: "wall"
+  collision_group: ""
 }
 convex_hulls {
   index: 647
@@ -768,7 +768,7 @@ convex_hulls {
 convex_hulls {
   index: 1010
   count: 4
-  collision_group: ""
+  collision_group: "ground"
 }
 convex_hulls {
   index: 1014
@@ -785,6 +785,6 @@ convex_hulls {
   count: 7
   collision_group: ""
 }
-collision_groups: "wall"
+collision_groups: "ground"
 extrude_borders: 2
 inner_padding: 0

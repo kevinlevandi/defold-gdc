@@ -1,10 +1,71 @@
-name: "main"
+name: "default"
 scale_along_z: 0
 embedded_instances {
-  id: "hero"
+  id: "map"
+  data: "components {\n"
+  "  id: \"tilemap\"\n"
+  "  component: \"/main/enemy/enemy_set_a.tilemap\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"collisionobject\"\n"
+  "  type: \"collisionobject\"\n"
+  "  data: \"collision_shape: \\\"/main/enemy/enemy_set_a.tilemap\\\"\\n"
+  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "mass: 0.0\\n"
+  "friction: 0.0\\n"
+  "restitution: 0.0\\n"
+  "group: \\\"ground\\\"\\n"
+  "mask: \\\"enemy\\\"\\n"
+  "linear_damping: 0.0\\n"
+  "angular_damping: 0.0\\n"
+  "locked_rotation: false\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "scanner_1"
   data: "components {\n"
   "  id: \"script\"\n"
-  "  component: \"/main/hero/hero.script\"\n"
+  "  component: \"/main/enemy/scanner.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -25,8 +86,9 @@ embedded_instances {
   "mass: 0.0\\n"
   "friction: 0.0\\n"
   "restitution: 0.0\\n"
-  "group: \\\"hero\\\"\\n"
-  "mask: \\\"wall\\\"\\n"
+  "group: \\\"enemy\\\"\\n"
+  "mask: \\\"hero\\\"\\n"
+  "mask: \\\"ground\\\"\\n"
   "embedded_collision_shape {\\n"
   "  shapes {\\n"
   "    shape_type: TYPE_BOX\\n"
@@ -44,8 +106,8 @@ embedded_instances {
   "    index: 0\\n"
   "    count: 3\\n"
   "  }\\n"
-  "  data: 32.0\\n"
-  "  data: 32.0\\n"
+  "  data: 30.0\\n"
+  "  data: 30.0\\n"
   "  data: 10.0\\n"
   "}\\n"
   "linear_damping: 0.0\\n"
@@ -67,15 +129,15 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
-  "  data: \"tile_set: \\\"/main/hero/hero.tilesource\\\"\\n"
-  "default_animation: \\\"up\\\"\\n"
+  "  data: \"tile_set: \\\"/main/enemy/scanner.tilesource\\\"\\n"
+  "default_animation: \\\"down\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "\"\n"
   "  position {\n"
-  "    x: 34.0\n"
-  "    y: 34.0\n"
-  "    z: 1.0\n"
+  "    x: 32.0\n"
+  "    y: 32.0\n"
+  "    z: 0.0\n"
   "  }\n"
   "  rotation {\n"
   "    x: 0.0\n"
@@ -87,8 +149,8 @@ embedded_instances {
   ""
   position {
     x: 204.0
-    y: 0.0
-    z: 0.0
+    y: 204.0
+    z: 1.0
   }
   rotation {
     x: 0.0
@@ -103,25 +165,10 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "level"
+  id: "scanner_2"
   data: "components {\n"
   "  id: \"script\"\n"
-  "  component: \"/main/level/level.script\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  "components {\n"
-  "  id: \"tilemap\"\n"
-  "  component: \"/main/level/level.tilemap\"\n"
+  "  component: \"/main/enemy/scanner.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -137,13 +184,35 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"/main/level/level.tilemap\\\"\\n"
-  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "  data: \"collision_shape: \\\"\\\"\\n"
+  "type: COLLISION_OBJECT_TYPE_KINEMATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.0\\n"
   "restitution: 0.0\\n"
-  "group: \\\"wall\\\"\\n"
+  "group: \\\"enemy\\\"\\n"
   "mask: \\\"hero\\\"\\n"
+  "mask: \\\"ground\\\"\\n"
+  "embedded_collision_shape {\\n"
+  "  shapes {\\n"
+  "    shape_type: TYPE_BOX\\n"
+  "    position {\\n"
+  "      x: 34.0\\n"
+  "      y: 34.0\\n"
+  "      z: 0.0\\n"
+  "    }\\n"
+  "    rotation {\\n"
+  "      x: 0.0\\n"
+  "      y: 0.0\\n"
+  "      z: 0.0\\n"
+  "      w: 1.0\\n"
+  "    }\\n"
+  "    index: 0\\n"
+  "    count: 3\\n"
+  "  }\\n"
+  "  data: 30.0\\n"
+  "  data: 30.0\\n"
+  "  data: 10.0\\n"
+  "}\\n"
   "linear_damping: 0.0\\n"
   "angular_damping: 0.0\\n"
   "locked_rotation: false\\n"
@@ -161,13 +230,16 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"enemy_set_a_factory\"\n"
-  "  type: \"collectionfactory\"\n"
-  "  data: \"prototype: \\\"/main/enemy/enemy_set_a.collection\\\"\\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"tile_set: \\\"/main/enemy/scanner.tilesource\\\"\\n"
+  "default_animation: \\\"down\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
+  "    x: 32.0\n"
+  "    y: 32.0\n"
   "    z: 0.0\n"
   "  }\n"
   "  rotation {\n"
@@ -179,9 +251,9 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
+    x: 68.0
+    y: 68.0
+    z: 1.0
   }
   rotation {
     x: 0.0

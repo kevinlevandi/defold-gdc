@@ -1,0 +1,17 @@
+local velocities = { vmath.vector3(100, 0, 0), vmath.vector3(-100, 0, 0) }
+
+function init(self)
+	local rndIdx = math.random(#velocities)
+	self.velocity = velocities[rndIdx]
+    
+end
+
+function update(self, dt)
+    go.set_position(go.get_position() + self.velocity * dt)  
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == hash("collision_response") and message.group == hash("ground") then
+		self.velocity = vmath.vector3(-self.velocity.x, 0, 0)
+	end
+end

@@ -1,48 +1,5 @@
-ScannerEnemy 	= require("modules.enemy.scannerenemy")
-BouncerEnemy	= require("modules.enemy.bouncerenemy")
-Util			= require("modules.misc.util")
-
-local difficulties = { "easy", "medium" }
-local enemyTypes = { ScannerEnemy, BouncerEnemy }
-local enemyTypesByDifficulty = {
-	easy = { ScannerEnemy },
-	medium = { ScannerEnemy, BouncerEnemy }
-}
-local nEnemiesByDifficulty = {
-	easy = 10,
-	medium = 20
-}
-
--- LOCAL FUNCTIONS --
-
-local function spawnEnemies(currentDifficulty)
-	local ret = {}
-	local availableEnemyTypes = enemyTypesByDifficulty[currentDifficulty]
-	for i=1, nEnemiesByDifficulty[currentDifficulty] do
-		local rndIdx = Util.getRandomInteger(#availableEnemyTypes)
-		table.insert(ret, availableEnemyTypes[rndIdx])
-	end
-	return ret
-end
-
-local function clearTileMap(layer)
-	local url = "/level#tilemap"
-	local x, y, w, h = tilemap.get_bounds(url)
-	for x=1, w do
-		for y=1, h do
-			tilemap.set_tile(url, layer, x, y, 0)
-		end
-	end
-end
-
--- GLOBAL FUNCTIONS --
-
 function init(self)
-    self.currentDifficulty = difficulties[2]
-	
-	local enemies = spawnEnemies(self.currentDifficulty)
-	for k, v in ipairs(enemies) do
-		v.move()
-	end
+	local f = "#enemy_set_a_factory"
+	collectionfactory.create(f, vmath.vector3(0, 3 * 68, 0), nil, {}, nil)
 end
 
