@@ -14,6 +14,7 @@ height = 680
 
 [physics]
 scale = 0.02
+debug = 1
 
 [script]
 shared_state = 1
