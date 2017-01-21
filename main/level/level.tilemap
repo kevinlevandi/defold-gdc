@@ -1,6 +1,6 @@
 tile_set: "/main/level/level.tilesource"
 layers {
-  id: "layer1"
+  id: "base"
   z: 0.0
   is_visible: 1
   cell {
@@ -493,6 +493,11 @@ layers {
     h_flip: 0
     v_flip: 0
   }
+}
+layers {
+  id: "sets"
+  z: 1.0
+  is_visible: 1
 }
 material: "/builtins/materials/tile_map.material"
 blend_mode: BLEND_MODE_ALPHA

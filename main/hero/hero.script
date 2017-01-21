@@ -1,0 +1,34 @@
+Hero = require("modules.hero.hero")
+
+local TILE_WIDTH = 68
+
+-- LOCAL FUNCTIONS --
+
+local function transpose(pos)
+	local t = vmath.vector3(pos.x * TILE_WIDTH, pos.y * TILE_WIDTH, pos.z)
+	print(t)
+	return t 
+end
+
+-- GLOBAL FUNCTIONS --
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	self.hero = Hero:new{pos = vmath.vector3(3, 0, 0)}
+	go.set_position(transpose(self.hero:getPos()))
+end
+
+function final(self)
+    msg.post(".", "release_input_focus")
+end
+
+function update(self, dt)
+	
+end
+
+function on_input(self, action_id, action)
+	if action.released then
+    	self.hero:move(action_id)
+    	go.set_position(transpose(self.hero:getPos()))
+	end
+end
