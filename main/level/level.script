@@ -2,8 +2,6 @@ ScannerEnemy 	= require("modules.enemy.scannerenemy")
 BouncerEnemy	= require("modules.enemy.bouncerenemy")
 Util			= require("modules.misc.util")
 
--- IMMUTABLES --
-
 local difficulties = { "easy", "medium" }
 local enemyTypes = { ScannerEnemy, BouncerEnemy }
 local enemyTypesByDifficulty = {
@@ -27,10 +25,6 @@ local function spawnEnemies(currentDifficulty)
 	return ret
 end
 
-local function renderEnemies()
-
-end
-
 local function clearTileMap(layer)
 	local url = "/level#tilemap"
 	local x, y, w, h = tilemap.get_bounds(url)
@@ -52,10 +46,3 @@ function init(self)
 	end
 end
 
-function on_message(self, message_id, message, sender)
-	if message_id == hash("collision_response") then
-		print(message_id, message, sender)
-	elseif message_id == hash("contact_point_response") then
-		print(message_id, message, sender)
-	end
-end
