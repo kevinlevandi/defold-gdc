@@ -11,7 +11,7 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-    if message_id == hash("collision_response") and message.group == hash("ground_vertical") then
+    if message_id == hash("collision_response") and message.group == hash("ground_2") then
 		self.velocity = vmath.vector3(0, -self.velocity.y, 0)
 	end
 end

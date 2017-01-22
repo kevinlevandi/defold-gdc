@@ -1,4 +1,4 @@
-tile_set: "/main/enemy/set_b/enemy_set_b.tilesource"
+tile_set: "/main/enemy/set_d/enemy_set_d.tilesource"
 layers {
   id: "layer1"
   z: 0.0

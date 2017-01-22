@@ -1,5 +1,5 @@
 local GROUND_TILE = 68
-local factories = {"#enemy_set_a_factory", "#enemy_set_b_factory", "#enemy_set_c_factory", "#enemy_set_d_factory", "#enemy_set_e_factory"}
+local factories = {"#enemy_set_a_factory", "#enemy_set_b_factory", "#enemy_set_c_factory", "#enemy_set_d_factory", "#enemy_set_e_factory", "#enemy_set_f_factory", "#enemy_set_g_factory"}
 local grounds = {"ground_1", "ground_2"}
 local velocity = vmath.vector3()
 
@@ -12,7 +12,7 @@ local function prev_idx(current_idx, tab)
 end
 
 function init(self)
-    local f = factories[5]
+    local f = factories[6]
 	collectionfactory.create(f, vmath.vector3(0, 3 * GROUND_TILE, 0), nil, {}, nil)
 end
 

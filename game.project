@@ -14,7 +14,7 @@ height = 680
 
 [physics]
 scale = 0.02
-debug = 0
+debug = 1
 gravity_y = 0
 
 [script]
