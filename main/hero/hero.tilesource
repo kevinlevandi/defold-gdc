@@ -1,4 +1,4 @@
-image: "/images/mega_pidgeot.png"
+image: "/images/keromatsu.png"
 tile_width: 64
 tile_height: 64
 tile_margin: 0
@@ -10,7 +10,7 @@ animations {
   start_tile: 1
   end_tile: 4
   playback: PLAYBACK_LOOP_PINGPONG
-  fps: 15
+  fps: 8
   flip_horizontal: 0
   flip_vertical: 0
 }
@@ -19,7 +19,7 @@ animations {
   start_tile: 5
   end_tile: 8
   playback: PLAYBACK_LOOP_PINGPONG
-  fps: 15
+  fps: 8
   flip_horizontal: 0
   flip_vertical: 0
 }
@@ -28,7 +28,7 @@ animations {
   start_tile: 9
   end_tile: 12
   playback: PLAYBACK_LOOP_PINGPONG
-  fps: 15
+  fps: 8
   flip_horizontal: 0
   flip_vertical: 0
 }
@@ -37,7 +37,7 @@ animations {
   start_tile: 13
   end_tile: 16
   playback: PLAYBACK_LOOP_PINGPONG
-  fps: 15
+  fps: 8
   flip_horizontal: 0
   flip_vertical: 0
 }
