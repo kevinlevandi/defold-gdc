@@ -1,15 +1,30 @@
 local GROUND_TILE = 68
-local factories = {"#enemy_set_a_factory", "#enemy_set_b_factory"}
+local factories = {"#enemy_set_a_factory", "#enemy_set_b_factory", "#enemy_set_c_factory", "#enemy_set_d_factory", "#enemy_set_e_factory"}
+local grounds = {"ground_1", "ground_2"}
 local velocity = vmath.vector3()
 
+local function prev_idx(current_idx, tab)
+	if current_idx-1 > 0 then
+		return current_idx-1
+	else
+		return #tab
+	end
+end
+
 function init(self)
-	print(go.get_position())
-	local f = factories[1]
-	--collectionfactory.create(f, vmath.vector3(0, 3 * GROUND_TILE, 0), nil, {}, nil)
+    local f = factories[5]
+	collectionfactory.create(f, vmath.vector3(0, 3 * GROUND_TILE, 0), nil, {}, nil)
 end
 
 function update(self, dt)
-	go.set_position(go.get_position() + velocity * dt)
+	for k, v in ipairs(grounds) do
+		local pos = go.get_position(v)
+		if pos.y <= -10 * GROUND_TILE then
+			local prev_ground_idx = prev_idx(k, grounds) 
+			pos.y = go.get_position(grounds[prev_ground_idx]).y + 10 * GROUND_TILE
+		end
+		go.set_position(pos + velocity * dt, v)
+	end
 end
 
 function on_message(self, message_id, message, sender)
@@ -17,4 +32,3 @@ function on_message(self, message_id, message, sender)
 		velocity = message.velocity
 	end
 end
-

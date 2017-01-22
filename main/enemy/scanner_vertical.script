@@ -1,4 +1,4 @@
-local velocities = { vmath.vector3(100, 0, 0), vmath.vector3(-100, 0, 0) }
+local velocities = { vmath.vector3(0, 100, 0), vmath.vector3(0, -100, 0) }
 
 function init(self)
 	local rndIdx = math.random(#velocities)
@@ -11,7 +11,7 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-    if message_id == hash("collision_response") and message.group == hash("ground") then
-		self.velocity = vmath.vector3(-self.velocity.x, 0, 0)
+    if message_id == hash("collision_response") and message.group == hash("ground_vertical") then
+		self.velocity = vmath.vector3(0, -self.velocity.y, 0)
 	end
 end
