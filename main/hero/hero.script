@@ -10,14 +10,18 @@ end
 function update(self, dt)
 	if self.walking == true then
 		if self.direction == hash("up") then
-			if go.get_position().y < (2 * GROUND_TILE) then
+			if go.get_position().y < 2 * GROUND_TILE then
 				self.velocity = vmath.vector3(0, 100, 0) 
 			else
 				self.velocity = vmath.vector3() 
 				msg.post("ground/controller#script", hash("move"), {velocity = vmath.vector3(0, -100, 0)})
 			end
 		elseif self.direction == hash("down") then
-			self.velocity = vmath.vector3(0, -100, 0)
+			if go.get_position().y > 0 then
+				self.velocity = vmath.vector3(0, -100, 0)
+			else
+				self.velocity = vmath.vector3() 
+			end
 		elseif self.direction == hash("right") then
 			self.velocity = vmath.vector3(100, 0, 0)
 		elseif self.direction == hash("left") then
