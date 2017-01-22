@@ -1,8 +1,8 @@
 local TILE_DIMENSION = 68
-local factories = {"#enemy_set_a_factory", "#enemy_set_b_factory"}
+local factories = {"#enemy_set_a_factory", "#enemy_set_b_factory", "#enemy_set_c_factory", "#enemy_set_d_factory", "#enemy_set_e_factory"}
 
 function init(self)
-	local f = factories[2]
-	collectionfactory.create(f, vmath.vector3(0, 3 * TILE_DIMENSION, 0), nil, {}, nil)
+	local f = factories[5]
+	collectionfactory.create(f, vmath.vector3(0, 1 * TILE_DIMENSION, 0), nil, {}, nil)
 end
 
