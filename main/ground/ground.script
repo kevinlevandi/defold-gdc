@@ -1,0 +1,20 @@
+local GROUND_TILE = 68
+local factories = {"#enemy_set_a_factory", "#enemy_set_b_factory"}
+local velocity = vmath.vector3()
+
+function init(self)
+	print(go.get_position())
+	local f = factories[1]
+	--collectionfactory.create(f, vmath.vector3(0, 3 * GROUND_TILE, 0), nil, {}, nil)
+end
+
+function update(self, dt)
+	go.set_position(go.get_position() + velocity * dt)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("move") then
+		velocity = message.velocity
+	end
+end
+

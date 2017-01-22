@@ -1,28 +1,43 @@
+local GROUND_TILE = 68 
+
 function init(self)
 	self.velocity = vmath.vector3()
 	self.direction = hash("up")
+	self.walking = false
 	msg.post(".", "acquire_input_focus")
 end
 
 function update(self, dt)
-	go.set_position(go.get_position() + self.velocity * dt)  
+	if self.walking == true then
+		if self.direction == hash("up") then
+			if go.get_position().y < (2 * GROUND_TILE) then
+				self.velocity = vmath.vector3(0, 100, 0) 
+			else
+				self.velocity = vmath.vector3() 
+				msg.post("ground/controller#script", hash("move"), {velocity = vmath.vector3(0, -100, 0)})
+			end
+		elseif self.direction == hash("down") then
+			self.velocity = vmath.vector3(0, -100, 0)
+		elseif self.direction == hash("right") then
+			self.velocity = vmath.vector3(100, 0, 0)
+		elseif self.direction == hash("left") then
+			self.velocity = vmath.vector3(-100, 0, 0)
+		end
+	else
+		self.velocity = vmath.vector3()
+	end
+	
+	go.set_position(go.get_position() + self.velocity * dt)
 end
 
 function on_input(self, action_id, action)
 	if action.pressed then
 		msg.post("#sprite", "play_animation", {id = action_id})
-	
-		if action_id == hash("up") then
-			self.velocity = vmath.vector3(0, 100, 0)
-		elseif action_id == hash("down") then
-			self.velocity = vmath.vector3(0, -100, 0)
-		elseif action_id == hash("right") then
-			self.velocity = vmath.vector3(100, 0, 0)
-		elseif action_id == hash("left") then
-			self.velocity = vmath.vector3(-100, 0, 0)
-		end
+		self.walking = true
+		self.direction = action_id 
 	elseif action.released then
-		self.velocity = vmath.vector3()
+		msg.post("ground/controller#script", hash("move"), {velocity = vmath.vector3()})
+		self.walking = false
 	end
 end
 
